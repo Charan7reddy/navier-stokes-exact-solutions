@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Inputs
+R = 0.01       # Pipe radius (m)
+dpdz = -100    # Pressure gradient (Pa/m)
+mu = 0.001     # Dynamic viscosity (Pa·s)
+r = np.linspace(0, R, 100)  # Radial position
+
+# Solution
+u = -(1/(4*mu)) * (dpdz) * (R**2 - r**2)  # Axisymmetric parabolic profile
+tau = -(1/2) * (dpdz) * r  # Linear shear stress
+
+# Plot
+plt.figure(figsize=(10, 4))
+plt.subplot(1, 2, 1)
+plt.plot(u, r, 'b-', linewidth=2)
+plt.xlabel('Velocity (m/s)')
+plt.ylabel('Radius (m)')
+plt.title('Velocity Profile')
+
+plt.subplot(1, 2, 2)
+plt.plot(tau, r, 'r-', linewidth=2)
+plt.xlabel('Shear Stress (Pa)')
+plt.title('Stress Distribution')
+plt.tight_layout()
+plt.show()
