@@ -1,0 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import erfc
+
+# Inputs
+U = 1.0        # Plate velocity (m/s)
+nu = 1e-6      # Kinematic viscosity (m²/s)
+t_values = [0.1, 1.0, 10.0]  # Time points (s)
+y = np.linspace(0, 0.1, 100)  # Height array (m)
+
+# Solution and Plot
+plt.figure(figsize=(10, 4))
+for t in t_values:
+    eta = y / (2 * np.sqrt(nu * t))
+    u = U * erfc(eta)
+    plt.plot(u, y, label=f't = {t}s')
+
+plt.xlabel('Velocity (m/s)')
+plt.ylabel('Height (m)')
+plt.title('Velocity Profiles at Different Times')
+plt.legend()
+plt.grid()
+plt.show()
