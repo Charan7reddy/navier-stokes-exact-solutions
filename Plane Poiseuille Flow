@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Inputs
+h = 0.01       # Half-height between plates (m)
+dpdx = -100    # Pressure gradient (Pa/m)
+mu = 0.001     # Dynamic viscosity (Pa·s)
+y = np.linspace(-h, h, 200)  # Position array
+
+# Solution
+u = -(1/(2*mu)) * (dpdx) * (h**2 - y**2)  # Parabolic profile
+tau = -mu * (1/mu) * (dpdx) * y  # Linear shear stress
+
+# Plot
+plt.figure(figsize=(10, 4))
+plt.subplot(1, 2, 1)
+plt.plot(u, y, 'b-', linewidth=2)
+plt.xlabel('Velocity (m/s)')
+plt.ylabel('Height (m)')
+plt.title('Velocity Profile')
+
+plt.subplot(1, 2, 2)
+plt.plot(tau, y, 'r-', linewidth=2)
+plt.xlabel('Shear Stress (Pa)')
+plt.title('Stress Distribution')
+plt.tight_layout()
+plt.show()
